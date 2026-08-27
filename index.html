@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pyuhachon "Mai" Thongsumrit — Agricultural &amp; Mechanical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#0B2544;
+    --panel:#0E2E52;
+    --panel-2:#0A2140;
+    --ink:#EAF2FF;
+    --ink-dim:#93AFD4;
+    --ink-faint:#5D7BA3;
+    --line:rgba(234,242,255,0.14);
+    --line-soft:rgba(234,242,255,0.07);
+    --accent:#FF6A13;
+    --accent-dim:rgba(255,106,19,0.15);
+    --cyan:#6FD6D0;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--line-soft) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px) 0 0/40px 40px,
+      var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:#0B2544;}
+  a{color:inherit;}
+
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .display{font-family:'Space Grotesk', sans-serif;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px;height:1px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- HEADER / NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,37,68,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    max-width:1040px;margin:0 auto;padding:16px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .navmark{
+    display:flex;align-items:center;gap:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;letter-spacing:0.06em;
+  }
+  .navmark svg{width:20px;height:20px;flex-shrink:0;}
+  nav ul{list-style:none;display:flex;gap:28px;margin:0;padding:0;}
+  nav a{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+    text-decoration:none;color:var(--ink-dim);
+    transition:color .15s;
+    padding:4px 2px;border-bottom:1px solid transparent;
+  }
+  nav a:hover, nav a:focus-visible{color:var(--ink);border-bottom-color:var(--accent);outline:none;}
+  .navlinks{display:flex;}
+  @media(max-width:720px){ .navlinks{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:88px 0 40px;position:relative;}
+  .datum{
+    position:absolute;
+    width:26px;height:26px;
+    opacity:.55;
+  }
+  .datum svg{width:100%;height:100%;}
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+  h1.name{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(38px,7vw,72px);
+    line-height:1.02;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  h1.name .last{color:var(--ink-dim);font-weight:500;}
+  .role-line{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(13px,2vw,16px);
+    color:var(--cyan);
+    margin:0 0 22px;
+    letter-spacing:.02em;
+  }
+  .hero-desc{
+    max-width:560px;
+    font-size:16px;line-height:1.65;
+    color:var(--ink-dim);
+    margin:0 0 32px;
+  }
+  .hero-desc strong{color:var(--ink);font-weight:600;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    padding:13px 22px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .15s, background .15s, border-color .15s;
+  }
+  .btn-primary{background:var(--accent);color:#0B1B33;font-weight:600;border:1px solid var(--accent);}
+  .btn-primary:hover{transform:translateY(-1px);background:#ff7a2c;}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink-dim);}
+  .btn-ghost:hover{border-color:var(--ink-dim);color:var(--ink);}
+
+  /* dimension rule under hero */
+  .dim-rule{
+    margin-top:56px;
+    display:flex;align-items:center;gap:14px;
+    color:var(--ink-faint);
+  }
+  .dim-rule .tick{width:1px;height:10px;background:var(--ink-faint);}
+  .dim-rule .line{flex:1;height:1px;background:var(--line);}
+  .dim-rule span{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:70px 0;border-top:1px solid var(--line);}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:38px;flex-wrap:wrap;}
+  h2.title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(24px,3.4vw,32px);
+    font-weight:600;margin:0;
+    letter-spacing:-0.01em;
+  }
+  .section-note{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);text-align:right;line-height:1.6;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{font-size:15.5px;line-height:1.75;color:var(--ink-dim);margin:0 0 16px;}
+  .about-text strong{color:var(--ink);font-weight:600;}
+  .spec-table{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .spec-row{display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid var(--line);}
+  .spec-row:last-child{border-bottom:none;}
+  .spec-row .k{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent);padding:12px 14px;background:var(--panel-2);border-right:1px solid var(--line);
+  }
+  .spec-row .v{padding:12px 14px;font-size:13.5px;color:var(--ink);}
+
+  /* ---------- EDUCATION ---------- */
+  .edu-card{
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 28px;background:var(--panel);
+    position:relative;
+  }
+  .edu-top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:10px;}
+  .edu-school{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;}
+  .edu-gpa{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);
+    border:1px solid var(--accent-dim);background:var(--accent-dim);
+    padding:5px 10px;border-radius:var(--radius);white-space:nowrap;height:fit-content;
+  }
+  .edu-degree{color:var(--ink-dim);font-size:14.5px;margin:0 0 14px;line-height:1.6;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;
+    border:1px solid var(--line);color:var(--ink-dim);padding:5px 10px;border-radius:var(--radius);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-list{display:flex;flex-direction:column;gap:22px;}
+  .proj-card{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--panel);
+    display:grid;grid-template-columns:210px 1fr;
+    overflow:hidden;
+  }
+  @media(max-width:700px){.proj-card{grid-template-columns:1fr;}}
+  .proj-figure{
+    background:var(--panel-2);
+    border-right:1px solid var(--line);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:24px 16px;text-align:center;gap:10px;
+  }
+  @media(max-width:700px){.proj-figure{border-right:none;border-bottom:1px solid var(--line);}}
+  .proj-figure svg{width:64px;height:64px;color:var(--cyan);}
+  .proj-stat{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;color:var(--ink);}
+  .proj-stat-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);}
+  .proj-body{padding:24px 26px;}
+  .proj-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px;}
+  .proj-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;}
+  .proj-code{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-faint);}
+  .proj-desc{color:var(--ink-dim);font-size:14.5px;line-height:1.7;margin:0 0 14px;}
+  .proj-desc strong{color:var(--ink);font-weight:600;}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  @media(max-width:700px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-cell{background:var(--panel);padding:22px 22px;}
+  .skill-cell .k{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  .skill-cell ul{margin:0;padding:0;list-style:none;}
+  .skill-cell li{font-size:14px;color:var(--ink-dim);padding:4px 0;line-height:1.5;}
+  .skill-cell li::before{content:"— ";color:var(--ink-faint);}
+
+  /* ---------- FREELANCE ---------- */
+  .free-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media(max-width:700px){.free-row{grid-template-columns:1fr;}}
+  .free-card{border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;background:var(--panel);}
+  .free-card h3{font-family:'Space Grotesk',sans-serif;font-size:16px;margin:0 0 8px;}
+  .free-card p{font-size:14px;color:var(--ink-dim);line-height:1.65;margin:0;}
+
+  /* ---------- CONTACT / TITLE BLOCK ---------- */
+  .titleblock{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .tb-top{display:grid;grid-template-columns:1fr 1fr;}
+  @media(max-width:700px){.tb-top{grid-template-columns:1fr;}}
+  .tb-main{padding:34px 30px;border-right:1px solid var(--line);}
+  @media(max-width:700px){.tb-main{border-right:none;border-bottom:1px solid var(--line);}}
+  .tb-main h3{font-family:'Space Grotesk',sans-serif;font-size:24px;margin:0 0 10px;}
+  .tb-main p{color:var(--ink-dim);font-size:14.5px;line-height:1.7;margin:0 0 20px;max-width:420px;}
+  .tb-fields{padding:34px 30px;}
+  .tb-field{display:grid;grid-template-columns:90px 1fr;padding:9px 0;border-bottom:1px solid var(--line-soft);}
+  .tb-field:last-child{border-bottom:none;}
+  .tb-field .k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);}
+  .tb-field .v{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink);}
+  .tb-strip{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    padding:14px 30px;background:var(--panel-2);
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);
+  }
+
+  footer{padding:30px 0 50px;text-align:center;}
+  footer p{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-faint);letter-spacing:.06em;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="navmark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><line x1="12" y1="1" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="1" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="23" y2="12"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>
+      <span>MAI&nbsp;/&nbsp;THONGSUMRIT</span>
+    </div>
+    <div class="navlinks">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#freelance">Freelance</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <div class="eyebrow">Drawing No. MT-2026 · Personal Profile</div>
+  <div class="hero-grid">
+    <h1 class="name">Pyuhachon <span class="last">"Mai"</span><br>Thongsumrit</h1>
+    <p class="role-line">Agricultural &amp; Mechanical Engineer — Smart Farm Systems × Manufacturing</p>
+  </div>
+  <p class="hero-desc">
+    KMITL graduate with a dual degree in <strong>Agricultural Engineering</strong> and
+    <strong>Smart Farm Management</strong>. I build things that start on a CAD sheet and end up
+    working in a field, a barn, or a production line — then I can sell and explain them too.
+  </p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#projects">View Projects</a>
+    <a class="btn btn-ghost" href="#contact">Get in Touch</a>
+  </div>
+  <div class="dim-rule">
+    <div class="tick"></div>
+    <span>KMITL · Bangkok, Thailand</span>
+    <div class="line"></div>
+    <span>Scale 1:1 · Rev. 2026</span>
+    <div class="tick"></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="title">About</h2>
+      <div class="section-note">Sheet 01 / Summary</div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I graduated from <strong>King Mongkut's Institute of Technology Ladkrabang (KMITL)</strong>
+        with a dual degree spanning agricultural engineering and smart farm management — a
+        combination that trained me to see a problem as both a mechanical design and a
+        business case at once.</p>
+        <p>My work sits at the intersection of <strong>engineering and commerce</strong>: I design
+        and model in SolidWorks, but I've also sold, assembled, and supported hydroponic
+        systems in the field, and run freelance CAD and business-strategy consulting on the
+        side. I hold a <strong>Workplace Safety Officer</strong> certification and I'm currently
+        looking for an engineering or operations role — manufacturing, continuous improvement,
+        or field engineering — where both halves of that background are useful.</p>
+      </div>
+      <div class="spec-table">
+        <div class="spec-row"><div class="k">Based</div><div class="v">Bang Khen, Bangkok, Thailand</div></div>
+        <div class="spec-row"><div class="k">Field</div><div class="v">Agricultural &amp; Mechanical Engineering</div></div>
+        <div class="spec-row"><div class="k">Tools</div><div class="v">SolidWorks, Fusion 360, QGIS</div></div>
+        <div class="spec-row"><div class="k">Cert.</div><div class="v">Workplace Safety Officer (จป.)</div></div>
+        <div class="spec-row"><div class="k">Languages</div><div class="v">Thai (native), English (B1)</div></div>
+        <div class="spec-row"><div class="k">Seeking</div><div class="v">Manufacturing / CI / Field Engineering</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="title">Education</h2>
+      <div class="section-note">Sheet 02 / Credentials</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-top">
+        <div class="edu-school">King Mongkut's Institute of Technology Ladkrabang (KMITL)</div>
+        <div class="edu-gpa mono">Aug 2022 – Jun 2026</div>
+      </div>
+      <p class="edu-degree">Dual degree program — two bachelor's degrees earned concurrently</p>
+      <div class="spec-table" style="margin-bottom:16px;">
+        <div class="spec-row"><div class="k">B.Sc.</div><div class="v">Agriculture Technology, Major Smart Farm Management — GPA 3.31, Second Class Honors</div></div>
+        <div class="spec-row"><div class="k">B.Eng.</div><div class="v">Agriculture Engineering — GPA 3.03</div></div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">CNH Industrial — Professional Training</span>
+        <span class="tag">Workplace Safety Officer (จป.)</span>
+        <span class="tag">SCG NAWA PLASTIC — Irrigation &amp; Water System Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="title">Experience</h2>
+      <div class="section-note">Sheet 03 / Work History</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-top">
+        <div class="edu-school">Junior Engineering Intern — Bangsi Agriculture</div>
+        <div class="edu-gpa mono">May – Oct 2025</div>
+      </div>
+      <p class="edu-degree">
+        Designed 3D models in SolidWorks and produced scaled 2D technical drawings, then took that
+        design work into the field — assembling vertical hydroponic growing systems including
+        electrical wiring, plumbing, and aluminum frame construction. Also served as a sales
+        representative for vertical hydroponic growing kits at the BIOTEC Research Center.
+      </p>
+      <div class="tag-row">
+        <span class="tag">SolidWorks 3D Modeling</span>
+        <span class="tag">2D Technical Drawing</span>
+        <span class="tag">Vertical Hydroponic Systems</span>
+        <span class="tag">Sales — BIOTEC Research Center</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="title">Featured Projects</h2>
+      <div class="section-note">Sheet 04 / Capstone Work</div>
+    </div>
+    <div class="proj-list">
+
+      <div class="proj-card">
+        <div class="proj-figure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="3" y="4" width="18" height="13" rx="1.5"/>
+            <path d="M7 21h10M9 17v4M15 17v4"/>
+            <circle cx="9" cy="10.5" r="1.6"/>
+            <path d="M13 13.5l2-3 3 4.5"/>
+          </svg>
+          <div class="proj-stat">RT</div>
+          <div class="proj-stat-label">Real-Time AI</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-head">
+            <div class="proj-title">Real-Time Pig Weight Estimation System</div>
+            <div class="proj-code mono">PROJECT — 01</div>
+          </div>
+          <p class="proj-desc">
+            An image-processing system that estimates livestock weight <strong>in real time</strong>,
+            developed together with <strong>CPF</strong> — replacing manual weighing with a
+            faster, lower-stress process for tracking herd growth on a working farm.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Image Processing</span>
+            <span class="tag">Smart Farm Systems</span>
+            <span class="tag">Industry Collaboration — CPF</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-figure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="3" y="7" width="18" height="12" rx="1"/>
+            <circle cx="7.5" cy="13" r="1.4"/><circle cx="12" cy="13" r="1.4"/><circle cx="16.5" cy="13" r="1.4"/>
+            <line x1="7" y1="7" x2="7" y2="4"/><line x1="17" y1="7" x2="17" y2="4"/><line x1="7" y1="4" x2="17" y2="4"/>
+          </svg>
+          <div class="proj-stat">96</div>
+          <div class="proj-stat-label">Channels</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-head">
+            <div class="proj-title">96-Channel Hydroponic Seed Starter</div>
+            <div class="proj-code mono">PROJECT — 02</div>
+          </div>
+          <p class="proj-desc">
+            A 96-channel seed starter for hydroponic salad vegetable cultivation, designed and
+            modeled in SolidWorks — cutting the time farmers spend starting a batch of seedlings
+            <strong>from 5 minutes down to 2</strong>.
+          </p>
+          <div class="tag-row">
+            <span class="tag">SolidWorks</span>
+            <span class="tag">Mechanical Design</span>
+            <span class="tag">Hydroponic Systems</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-figure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M2 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>
+            <path d="M2 19c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>
+            <path d="M6 11c0-4 3-7 3-7s3 3 3 7"/>
+          </svg>
+          <div class="proj-stat">1</div>
+          <div class="proj-stat-label">Pond System</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-head">
+            <div class="proj-title">Freshwater Shrimp Farming Pond</div>
+            <div class="proj-code mono">PROJECT — 03</div>
+          </div>
+          <p class="proj-desc">
+            Designed and constructed a <strong>freshwater shrimp farming pond</strong> from the
+            ground up — taking an aquaculture system from concept through to a working build.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Aquaculture</span>
+            <span class="tag">System Design</span>
+            <span class="tag">Construction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-figure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M3 20V4M3 20h18"/>
+            <path d="M7 16l4-5 3 3 5-7"/>
+          </svg>
+          <div class="proj-stat">3</div>
+          <div class="proj-stat-label">Sectors Analyzed</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-head">
+            <div class="proj-title">Equity Research — Tech, Defense &amp; Commodities</div>
+            <div class="proj-code mono">PROJECT — 04</div>
+          </div>
+          <p class="proj-desc">
+            Fundamental analysis, financial metrics evaluation, and situational assessment of
+            key stocks across the <strong>technology, defense, and commodity</strong> sectors.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Fundamental Analysis</span>
+            <span class="tag">Financial Metrics</span>
+            <span class="tag">Market Research</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="title">Skills</h2>
+      <div class="section-note">Sheet 05 / Specification</div>
+    </div>
+    <div class="skills-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="skill-cell">
+        <div class="k">Engineering &amp; CAD</div>
+        <ul>
+          <li>SolidWorks</li>
+          <li>Fusion 360</li>
+          <li>2D technical drawing</li>
+          <li>QGIS</li>
+        </ul>
+      </div>
+      <div class="skill-cell">
+        <div class="k">Smart Agriculture</div>
+        <ul>
+          <li>Hydroponic systems</li>
+          <li>Image-processing / applied AI</li>
+          <li>Aquaculture systems</li>
+          <li>Irrigation &amp; water systems</li>
+        </ul>
+      </div>
+      <div class="skill-cell">
+        <div class="k">Business</div>
+        <ul>
+          <li>Sales &amp; negotiation</li>
+          <li>Client communication</li>
+          <li>Business Model Canvas</li>
+          <li>Freelance consulting</li>
+        </ul>
+      </div>
+      <div class="skill-cell">
+        <div class="k">Languages &amp; Interests</div>
+        <ul>
+          <li>Thai (native), English (B1)</li>
+          <li>Guitar &amp; piano</li>
+          <li>Photography &amp; video editing</li>
+          <li>3D printing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="activities">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="title">Activities &amp; Leadership</h2>
+      <div class="section-note">Sheet 06 / Beyond the Bench</div>
+    </div>
+    <div class="free-row">
+      <div class="free-card">
+        <h3>Freshman Orientation Camp</h3>
+        <p>Organized and managed a freshman orientation camp for 100+ participants at KMITL.</p>
+      </div>
+      <div class="free-card">
+        <h3>University Music Contest 2</h3>
+        <p>Competed in the university's music contest, alongside guitar and piano as ongoing interests.</p>
+      </div>
+      <div class="free-card">
+        <h3>Bangkok → Northern Thailand, 3,000 km</h3>
+        <p>Rode motorcycle solo from Bangkok through northern Thailand — a 3,000 km trip.</p>
+      </div>
+      <div class="free-card">
+        <h3>Car Design</h3>
+        <p>Personal interest in car design, with a focus on BMW.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="freelance">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="title">Freelance Work</h2>
+      <div class="section-note">Sheet 07 / Independent Practice</div>
+    </div>
+    <div class="free-row">
+      <div class="free-card">
+        <h3>3D CAD Design — Fastwork</h3>
+        <p>Freelance CAD commissions including brackets, hex bushings, and dose bottles,
+        modeled and delivered for clients through the Fastwork platform.</p>
+      </div>
+      <div class="free-card">
+        <h3>Business Strategy Consulting</h3>
+        <p>Business Model Canvas and business-strategy consulting offered alongside CAD
+        work — applying the commercial side of my background to client problems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="title">Contact</h2>
+      <div class="section-note">Sheet 08 / Title Block</div>
+    </div>
+    <div class="titleblock">
+      <div class="tb-top">
+        <div class="tb-main">
+          <h3>Let's work together</h3>
+          <p>Open to manufacturing, continuous improvement, and field engineering roles,
+          as well as freelance CAD and smart-agriculture projects.</p>
+          <a class="btn btn-primary" href="mailto:maipyuhachon@gmail.com">Email Me</a>
+          <a class="btn btn-ghost" href="tel:0954733283" style="margin-left:10px;">Call</a>
+        </div>
+        <div class="tb-fields">
+          <div class="tb-field"><div class="k">Name</div><div class="v">Pyuhachon Thongsumrit</div></div>
+          <div class="tb-field"><div class="k">Role</div><div class="v">Mfg. / CI / Field Engineer</div></div>
+          <div class="tb-field"><div class="k">Email</div><div class="v">maipyuhachon@gmail.com</div></div>
+          <div class="tb-field"><div class="k">Phone</div><div class="v">095-473-3283</div></div>
+          <div class="tb-field"><div class="k">Location</div><div class="v">Bang Khen, Bangkok</div></div>
+        </div>
+      </div>
+      <div class="tb-strip">
+        <span>Drawn by: Mai</span>
+        <span>Rev. 2026</span>
+        <span>Scale 1:1</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Pyuhachon "Mai" Thongsumrit — Built with an engineering drawing sheet in mind.</p>
+</footer>
+
+</body>
+</html>
